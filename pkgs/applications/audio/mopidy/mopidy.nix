@@ -7,6 +7,7 @@
   gst_all_1,
   glib-networking,
   gobject-introspection,
+  pipewireSupport ? true,
   pipewire,
   nixosTests,
 }:
@@ -46,8 +47,8 @@ pythonPackages.buildPythonApplication rec {
         ];
       }
     ))
-    pipewire
-  ];
+  ]
+  ++ lib.optional pipewireSupport pipewire;
 
   propagatedBuildInputs =
     [ gobject-introspection ]
